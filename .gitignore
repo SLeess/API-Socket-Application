@@ -1,0 +1,6 @@
+.env
+__pycache__/
+/client/Lib
+/client/Scripts
+/server/Lib
+/server/Scripts
