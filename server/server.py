@@ -57,7 +57,7 @@ def tratar_cliente(conn, addr):
             
             # Descriptografar para ler no Servidor
             try:
-                msg_decrypted = cipher.decrypt(msg_encrypted).decode('utf-8')
+                msg_decrypted = msg_encrypted.decode('utf-8')
                 texto_log = f"[{addr[1]}]: {msg_decrypted}"
                 log_msg(texto_log) # Mostra na GUI do servidor
                 

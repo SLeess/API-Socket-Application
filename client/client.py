@@ -55,7 +55,8 @@ class ClienteChat:
         message = f"{self.nickname}: {self.input_area.get()}"
         
         # 1. Criptografa ANTES de enviar
-        token = cipher.encrypt(message.encode('utf-8'))
+        #token = cipher.encrypt(message.encode('utf-8'))
+        token = message.encode('utf-8')
         
         self.sock.send(token)
         
@@ -74,7 +75,7 @@ class ClienteChat:
                 if not message_encrypted: break
                 
                 # 2. Descriptografa para ler
-                message_decrypted = cipher.decrypt(message_encrypted).decode('utf-8')
+                message_decrypted = message_encrypted.decode('utf-8')
                 
                 if self.gui_concluido:
                     self.texto_area.config(state='normal')
