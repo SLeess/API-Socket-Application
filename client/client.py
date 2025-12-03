@@ -1,13 +1,25 @@
 import socket
 import threading
 import tkinter as tk
+
+import os
+from dotenv import load_dotenv
+
 from tkinter import simpledialog, scrolledtext
 from cryptography.fernet import Fernet
 
-HOST = '127.0.0.1'
-PORT = 5555
-# Mesma chave do servidor
-CHAVE_SECRETA = b'8coS7jL-u5Qy2cZ-WwFzN6gXo3Rj9kP1lM4nB8vT2qA='
+# --- CONFIGURAÇÕES ---
+load_dotenv()
+
+HOST = os.getenv('HOST')
+PORT = int(os.getenv('PORT')) # Converte para int, pois vem como string
+KEY_STRING = os.getenv('APP_KEY')
+
+if not KEY_STRING:
+    print("ERRO: APP_KEY não encontrada no arquivo .env")
+    exit()
+
+CHAVE_SECRETA = KEY_STRING.encode('utf-8') 
 cipher = Fernet(CHAVE_SECRETA)
 
 class ClienteChat:
